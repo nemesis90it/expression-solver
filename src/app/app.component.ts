@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {InputFieldComponent} from "./calculator/input-field/input-field.component";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,18 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  title = 'expression-solver';
+
+  @ViewChild('inputFieldComponent') private inputFieldComponent;
+
+  addText(toInsert: String) {
+    this.inputFieldComponent.inputElement.nativeElement.focus();
+    let startPos = this.inputFieldComponent.inputElement.nativeElement.selectionStart;
+    let value = this.inputFieldComponent.inputElement.nativeElement.value;
+    this.inputFieldComponent.inputElement.nativeElement.value =
+      value.substring(0, startPos) + toInsert + value.substring(startPos, value.length);
+    this.inputFieldComponent.inputElement.nativeElement.selectionEnd = startPos + toInsert.length;
+  }
+
 }

@@ -1,4 +1,4 @@
-import {Component, Directive, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-input-button',
@@ -6,7 +6,13 @@ import {Component, Directive, Input, OnInit} from '@angular/core';
   styleUrls: ['./input-button.component.css']
 })
 export class InputButtonComponent implements OnInit {
-  @Input() public text: String;
+
+  @Input() text: String;
+  @Output() clickEvent = new EventEmitter<boolean>();
+
+  handleClick() {
+    this.clickEvent.emit();
+  }
 
   constructor() {
   }
