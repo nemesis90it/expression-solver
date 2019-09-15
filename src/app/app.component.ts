@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {InputFieldComponent} from "./calculator/input-field/input-field.component";
+import {RestService} from "./rest.service";
 
 @Component({
   selector: 'app-root',
@@ -9,8 +9,10 @@ import {InputFieldComponent} from "./calculator/input-field/input-field.componen
 export class AppComponent {
 
   title = 'expression-solver';
-
   @ViewChild('inputFieldComponent') private inputFieldComponent;
+
+  constructor(private service: RestService) {
+  }
 
   addText(toInsert: String) {
     this.inputFieldComponent.inputElement.nativeElement.focus();
@@ -19,6 +21,11 @@ export class AppComponent {
     this.inputFieldComponent.inputElement.nativeElement.value =
       value.substring(0, startPos) + toInsert + value.substring(startPos, value.length);
     this.inputFieldComponent.inputElement.nativeElement.selectionEnd = startPos + toInsert.length;
+  }
+
+  evaluateExpression() {
+    let expression = this.inputFieldComponent.inputElement.nativeElement.value;
+    this.service.evaluateExpression(expression)
   }
 
 }

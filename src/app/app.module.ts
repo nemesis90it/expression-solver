@@ -5,6 +5,7 @@ import {CalculatorModule} from './calculator/calculator.module';
 import {AppComponent} from './app.component';
 import {FormsModule} from "@angular/forms";
 import {MathModule} from './math/math.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import {MathModule} from './math/math.module';
     BrowserModule,
     CalculatorModule,
     FormsModule,
-    MathModule.forRoot()
+    MathModule.forRoot(),
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

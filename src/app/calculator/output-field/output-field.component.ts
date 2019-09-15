@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-output-field',
+  selector: 'output-field',
   templateUrl: './output-field.component.html',
   styleUrls: ['./output-field.component.css']
 })
