@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'output-field',
@@ -6,6 +6,9 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./output-field.component.css']
 })
 export class OutputFieldComponent implements OnInit {
+
+  @ViewChild('inputElement') inputElement;
+  @Input() inputText: String;
 
   constructor() {
   }

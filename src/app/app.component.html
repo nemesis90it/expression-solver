@@ -1,8 +1,10 @@
-<div>
-  <input-field #inputFieldComponent></input-field>
+<div style="min-height:50px;text-align: center">
+  <span style="height: 50px">
+    <input-field #inputFieldComponent></input-field>
+  </span>
 </div>
-<div>
-  <output-field></output-field>
+<div style="min-height:50px;text-align: center">
+  <span>{{restService.response}}</span>
 </div>
 
 <div>
@@ -48,7 +50,7 @@
 <div>
   <input-button (clickEvent)="addText( 'log()')" text="log()"></input-button>
   <input-button (clickEvent)="addText( 'ln()')" text="ln()"></input-button>
-  <eval-button (clickEvent)="evaluateExpression()"></eval-button>
+  <eval-button (clickEvent)="evaluateExpression()" text="="></eval-button>
 </div>
 <div>
 

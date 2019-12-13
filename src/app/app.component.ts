@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'expression-solver';
   @ViewChild('inputFieldComponent') private inputFieldComponent;
 
-  constructor(private service: RestService) {
+  constructor(private restService: RestService) {
   }
 
   addText(toInsert: String) {
@@ -25,7 +25,11 @@ export class AppComponent {
 
   evaluateExpression() {
     let expression = this.inputFieldComponent.inputElement.nativeElement.value;
-    this.service.evaluateExpression(expression)
+    this.restService.processExpression(expression, 'http://localhost:8080/api/expression/evaluate');
   }
 
+  // simplifyExpression() {
+  //   let expression = this.inputFieldComponent.inputElement.nativeElement.value;
+  //   this.restService.processExpression(expression, 'http://localhost:8080/api/expression/simplify');
+  // }
 }

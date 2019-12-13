@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -8,36 +7,31 @@ import {map} from "rxjs/operators";
 })
 export class RestService {
 
-  private endpoint = 'http://localhost:8080/api/expression/evaluate';
+  public response;
+  private httpOptions: { headers: HttpHeaders };
 
   constructor(private http: HttpClient) {
-    const httpOptions = {
+    this.httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
+        'Content-Type': 'text/plain'
+      }),
     };
   }
 
-  private extractData(res: Response) {
-    let body = res;
-    console.log("Body: " + body);
-    return body || {};
-  }
-
-  evaluateExpression(expression): Observable<any> {
-    let url = this.endpoint + '?expression=' + encodeURIComponent(expression);
+  processExpression(expression, endpoint): void {
+    let url = endpoint + '?expression=' + encodeURIComponent(expression);
     console.log("Calling [" + url + "]");
-    var result = null;
-    this.http.get(url)
-      .pipe(map(this.extractData))
+
+    this.http.get(url, {responseType: 'text'})
+      .pipe(map(res => {
+        return res.toString() || {};
+      }))
       .subscribe(
         restItems => {
-          result = restItems;
-          console.log(result);
+          this.response = restItems;
+          console.log(this.response);
         }
       );
-
-    return result;
   }
 
 }
