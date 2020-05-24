@@ -1,4 +1,10 @@
-<div [mathText]="restService.response"
-     style="border:black;border-style:inset;border-width:thin;height:20px;width:100%; text-align:center;background: gainsboro">
-  {{restService.response}}
+<div
+  style="display: table;margin-right: auto; margin-left: auto; height:fit-content; min-width:200px; min-height:50px; padding:5px; overflow: hidden;">
+  <div
+    style="display: table-cell; vertical-align: middle; border:black; border-style:inset; border-width:thin; width:100%; background:gainsboro;">
+    <div [mathText]="restService.response" style="padding: 20px">
+      {{restService.response}}
+    </div>
+  </div>
 </div>
+<br>
