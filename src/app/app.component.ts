@@ -11,10 +11,10 @@ export class AppComponent {
   title = 'expression-solver';
   @ViewChild('inputFieldComponent') private inputFieldComponent;
 
-  constructor(private restService: RestService) {
+  constructor(public restService: RestService) {
   }
 
-  addText(toInsert: String) {
+  addText(toInsert: string) {
     this.inputFieldComponent.inputElement.nativeElement.focus();
     let startPos = this.inputFieldComponent.inputElement.nativeElement.selectionStart;
     let value = this.inputFieldComponent.inputElement.nativeElement.value;
@@ -28,8 +28,4 @@ export class AppComponent {
     this.restService.processExpression(expression, 'http://localhost:8080/api/expression/evaluate');
   }
 
-  // simplifyExpression() {
-  //   let expression = this.inputFieldComponent.inputElement.nativeElement.value;
-  //   this.restService.processExpression(expression, 'http://localhost:8080/api/expression/simplify');
-  // }
 }

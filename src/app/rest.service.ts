@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Input} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from "rxjs/operators";
 
@@ -7,7 +7,8 @@ import {map} from "rxjs/operators";
 })
 export class RestService {
 
-  public response;
+  response = "";
+  @Input() result: string;
   private httpOptions: { headers: HttpHeaders };
 
   constructor(private http: HttpClient) {
@@ -28,7 +29,8 @@ export class RestService {
       }))
       .subscribe(
         restItems => {
-          this.response = restItems;
+          // this.response = restItems.toString();
+          this.response = "$" + restItems.toString() + "$";
           console.log(this.response);
         }
       );

@@ -1,6 +1,5 @@
 import {Observable, Observer, ReplaySubject} from 'rxjs';
 import {Injectable} from '@angular/core';
-import {MathContent} from './math-content';
 
 // see https://stackoverflow.com/a/12709880/1203690
 declare global {
@@ -13,7 +12,7 @@ declare global {
 export interface MathService {
   ready(): Observable<boolean>;
 
-  render(element: HTMLElement, math?: MathContent): void;
+  render(element: HTMLElement, math?: string): void;
 }
 
 @Injectable()
@@ -30,15 +29,10 @@ export class MathServiceImpl implements MathService {
     return this.notifier;
   }
 
-  render(element: HTMLElement, math?: MathContent): void {
-    if (math) {
-      if (math.latex) {
-        element.innerText = math.latex;
-      } else {
-        element.innerHTML = math.mathml;
-      }
+  render(element: HTMLElement, latex?: string): void {
+    if (latex) {
+      element.innerText = latex;
     }
-
     MathJax.Hub.Queue(['Typeset', MathJax.Hub, element]);
   }
 }

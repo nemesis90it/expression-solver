@@ -1,4 +1,5 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {RestService} from "../../rest.service";
 
 @Component({
   selector: 'output-field',
@@ -7,10 +8,10 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 })
 export class OutputFieldComponent implements OnInit {
 
-  @ViewChild('inputElement') inputElement;
-  @Input() inputText: String;
+  public restService: RestService;
 
-  constructor() {
+  constructor(restService: RestService) {
+    this.restService = restService;
   }
 
   ngOnInit() {
