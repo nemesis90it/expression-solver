@@ -2,12 +2,21 @@ import {Injectable, Input} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from "rxjs/operators";
 
+
+class ComputationResult {
+  simplifiedForm: string
+  numericValue: string
+  derivative: string
+  roots: string
+  domain: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class RestService {
 
-  response = "";
+  response: ComputationResult = new ComputationResult();
   @Input() result: string;
   private httpOptions: { headers: HttpHeaders };
 
@@ -23,17 +32,20 @@ export class RestService {
     let url = endpoint + '?expression=' + encodeURIComponent(expression);
     console.log("Calling [" + url + "]");
 
-    this.http.get(url, {responseType: 'text'})
+    this.http.get<ComputationResult>(url, {responseType: 'json'})
       .pipe(map(res => {
-        return res.toString() || {};
+        return res || {};
       }))
       .subscribe(
-        restItems => {
-          // this.response = restItems.toString();
-          this.response = "$" + restItems.toString() + "$";
+        (restItems: ComputationResult) => {
           console.log(this.response);
+          // this.response = restItems.tostring();
+          this.response.simplifiedForm = "$" + restItems.simplifiedForm + "$";
+          this.response.derivative = "$" + restItems.derivative + "$";
+          this.response.domain = "$" + restItems.domain + "$";
+          this.response.numericValue = "$" + restItems.numericValue + "$";
+          this.response.roots = "$" + restItems.roots + "$";
         }
       );
   }
-
 }

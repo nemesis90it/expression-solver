@@ -1,8 +1,31 @@
 <div
   style="display: table;margin-right: auto; margin-left: auto; height:fit-content; min-width:200px; min-height:50px; padding:5px; overflow: hidden;">
+  Simplified:<br>
   <div
     style="display: table-cell; vertical-align: middle; border:black; border-style:inset; border-width:thin; width:100%; background:gainsboro;">
-    <div [mathText]="restService.response" style="padding: 20px">
+    <div [mathText]="restService.response.simplifiedForm" style="padding: 20px">
+      {{restService.response}}
+    </div>
+  </div>
+</div>
+<br>
+<div
+  style="display: table;margin-right: auto; margin-left: auto; height:fit-content; min-width:200px; min-height:50px; padding:5px; overflow: hidden;">
+  Derivative:<br>
+  <div
+    style="display: table-cell; vertical-align: middle; border:black; border-style:inset; border-width:thin; width:100%; background:gainsboro;">
+    <div [mathText]="restService.response.derivative" style="padding: 20px">
+      {{restService.response}}
+    </div>
+  </div>
+</div>
+<br>
+<div
+  style="display: table;margin-right: auto; margin-left: auto; height:fit-content; min-width:200px; min-height:50px; padding:5px; overflow: hidden;">
+  Domain:<br>
+  <div
+    style="display: table-cell; vertical-align: middle; border:black; border-style:inset; border-width:thin; width:100%; background:gainsboro;">
+    <div [mathText]="restService.response.domain" style="padding: 20px">
       {{restService.response}}
     </div>
   </div>

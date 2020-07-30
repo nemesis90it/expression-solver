@@ -25,7 +25,7 @@ export class AppComponent {
 
   evaluateExpression() {
     let expression = this.inputFieldComponent.inputElement.nativeElement.value;
-    this.restService.processExpression(expression, 'http://localhost:8080/api/expression/evaluate');
+    this.restService.processExpression(expression, 'http://localhost:8080/api/expression/compute');
   }
 
 }
